@@ -1,0 +1,280 @@
+---
+import { Icon } from "astro-icon/components";
+---
+
+<div class="mt-20">
+  <div class="text-center mb-16">
+    <h2 class="text-4xl lg:text-5xl font-bold lg:tracking-tight">
+      See VeriQuant in Action
+    </h2>
+    <p class="text-lg mt-4 text-slate-600 max-w-4xl mx-auto">
+      Experience the power of LLM agent-driven formal verification through our interactive demos 
+      and live product access. See how we're transforming quantitative finance validation today.
+    </p>
+  </div>
+
+  <!-- Main Demo Video -->
+  <div class="bg-gradient-to-br from-blue-900 to-purple-900 p-8 lg:p-12 rounded-xl mb-16">
+    <div class="grid lg:grid-cols-2 gap-12 items-center">
+      <div class="text-white">
+        <h3 class="text-3xl font-bold mb-6">Technology Demo</h3>
+        <p class="text-xl text-blue-200 mb-6">
+          Explore our prototype demonstration showing how LLM agents can approach mathematical verification 
+          of quantitative finance models, including binomial options pricing with formal proof concepts.
+        </p>
+        
+        <div class="space-y-4 mb-8">
+          <div class="flex items-center gap-3">
+            <Icon class="w-6 h-6 text-green-400" name="bx:bx-check-circle" />
+            <span class="text-blue-100">Prototype mathematical verification</span>
+          </div>
+          <div class="flex items-center gap-3">
+            <Icon class="w-6 h-6 text-green-400" name="bx:bx-check-circle" />
+            <span class="text-blue-100">Multi-agent workflow demonstration</span>
+          </div>
+          <div class="flex items-center gap-3">
+            <Icon class="w-6 h-6 text-green-400" name="bx:bx-check-circle" />
+            <span class="text-blue-100">Lean 4 formal proof integration</span>
+          </div>
+          <div class="flex items-center gap-3">
+            <Icon class="w-6 h-6 text-green-400" name="bx:bx-check-circle" />
+            <span class="text-blue-100">Interactive proof exploration</span>
+          </div>
+        </div>
+
+        <div class="flex gap-4">
+          <a 
+            href="https://jasonamilne.github.io/veriquant-demo" 
+            target="_blank"
+            class="inline-flex items-center gap-2 bg-white text-blue-900 px-6 py-3 rounded-lg hover:bg-gray-100 transition-colors font-semibold">
+            <Icon class="w-5 h-5" name="bx:bx-play-circle" />
+            View Prototype
+          </a>
+          <a 
+            href="/schedule-demo" 
+            class="inline-flex items-center gap-2 border border-white text-white px-6 py-3 rounded-lg hover:bg-white hover:text-blue-900 transition-colors">
+            <Icon class="w-5 h-5" name="bx:bx-calendar" />
+            Schedule Demo
+          </a>
+        </div>
+      </div>
+
+      <div class="relative">
+        <div class="aspect-video bg-black rounded-lg overflow-hidden shadow-2xl">
+          <!-- Placeholder for video - in production this would be an actual video -->
+          <div class="w-full h-full bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center">
+            <div class="text-center text-white">
+              <Icon class="w-24 h-24 mx-auto mb-4 text-blue-400" name="bx:bx-play-circle" />
+              <h4 class="text-xl font-bold mb-2">VeriQuant Demo Video</h4>
+              <p class="text-gray-300">Black-Scholes Model Verification</p>
+              <p class="text-sm text-gray-400 mt-2">Duration: 4:32</p>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Video overlay with play button -->
+        <div class="absolute inset-0 bg-blue-600 bg-opacity-20 rounded-lg flex items-center justify-center cursor-pointer hover:bg-opacity-30 transition-all">
+          <div class="w-20 h-20 bg-white bg-opacity-90 rounded-full flex items-center justify-center hover:bg-opacity-100 transition-all">
+            <Icon class="w-10 h-10 text-blue-600 ml-1" name="bx:bx-play" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Interactive Demo Options -->
+  <div class="grid lg:grid-cols-3 gap-8 mb-16">
+    <div class="bg-white p-8 rounded-xl shadow-lg border">
+      <div class="text-center mb-6">
+        <Icon class="w-16 h-16 text-blue-600 mx-auto mb-4" name="bx:bx-laptop" />
+        <h3 class="text-xl font-bold mb-2">Interactive Sandbox</h3>
+        <p class="text-gray-600">Try our verification engine with sample quantitative models</p>
+      </div>
+      
+      <div class="space-y-3 mb-6 text-sm">
+        <div class="flex items-center gap-2">
+          <Icon class="w-4 h-4 text-green-500" name="bx:bx-check" />
+          <span>Pre-loaded model library</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <Icon class="w-4 h-4 text-green-500" name="bx:bx-check" />
+          <span>Real-time verification results</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <Icon class="w-4 h-4 text-green-500" name="bx:bx-check" />
+          <span>No signup required</span>
+        </div>
+      </div>
+
+      <a 
+        href="https://jasonamilne.github.io/veriquant-demo" 
+        target="_blank"
+        class="w-full inline-flex items-center justify-center gap-2 bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors">
+        <Icon class="w-5 h-5" name="bx:bx-code-alt" />
+        View Prototype
+      </a>
+    </div>
+
+    <div class="bg-white p-8 rounded-xl shadow-lg border">
+      <div class="text-center mb-6">
+        <Icon class="w-16 h-16 text-green-600 mx-auto mb-4" name="bx:bx-shield-quarter" />
+        <h3 class="text-xl font-bold mb-2">Join Beta Program</h3>
+        <p class="text-gray-600">Get early access to our development platform</p>
+      </div>
+      
+      <div class="space-y-3 mb-6 text-sm">
+        <div class="flex items-center gap-2">
+          <Icon class="w-4 h-4 text-green-500" name="bx:bx-check" />
+          <span>Early platform access</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <Icon class="w-4 h-4 text-green-500" name="bx:bx-check" />
+          <span>Direct feedback channel</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <Icon class="w-4 h-4 text-green-500" name="bx:bx-check" />
+          <span>Collaborative development</span>
+        </div>
+      </div>
+
+      <a 
+        href="/survey" 
+        class="w-full inline-flex items-center justify-center gap-2 bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700 transition-colors">
+        <Icon class="w-5 h-5" name="bx:bx-rocket" />
+        Join Beta
+      </a>
+    </div>
+
+    <div class="bg-white p-8 rounded-xl shadow-lg border">
+      <div class="text-center mb-6">
+        <Icon class="w-16 h-16 text-purple-600 mx-auto mb-4" name="bx:bx-video" />
+        <h3 class="text-xl font-bold mb-2">Personalized Demo</h3>
+        <p class="text-gray-600">Custom demonstration for your specific use case</p>
+      </div>
+      
+      <div class="space-y-3 mb-6 text-sm">
+        <div class="flex items-center gap-2">
+          <Icon class="w-4 h-4 text-green-500" name="bx:bx-check" />
+          <span>45-minute session</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <Icon class="w-4 h-4 text-green-500" name="bx:bx-check" />
+          <span>Your models & scenarios</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <Icon class="w-4 h-4 text-green-500" name="bx:bx-check" />
+          <span>Technical Q&A with experts</span>
+        </div>
+      </div>
+
+      <a 
+        href="/schedule-demo" 
+        class="w-full inline-flex items-center justify-center gap-2 bg-purple-600 text-white px-6 py-3 rounded-lg hover:bg-purple-700 transition-colors">
+        <Icon class="w-5 h-5" name="bx:bx-calendar" />
+        Book Demo
+      </a>
+    </div>
+  </div>
+
+  <!-- Development Progress & Validation -->
+  <div class="bg-gray-50 p-8 lg:p-12 rounded-xl mb-16">
+    <h3 class="text-3xl font-bold mb-8 text-center">Technology Validation & Development Progress</h3>
+    
+    <div class="grid lg:grid-cols-2 gap-8">
+      <div class="bg-white p-8 rounded-lg shadow-md">
+        <div class="flex items-center gap-4 mb-6">
+          <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
+            <Icon class="w-6 h-6 text-blue-600" name="bx:bx-code-alt" />
+          </div>
+          <div>
+            <h4 class="font-bold text-lg">Technical Achievements</h4>
+            <p class="text-sm text-gray-600">Prototype Development & Validation</p>
+          </div>
+        </div>
+        
+        <p class="text-gray-700 mb-6">
+          Our prototype successfully demonstrates the integration of LLM agents with Lean 4 formal verification 
+          for options pricing models, validating our core technical approach.
+        </p>
+        
+        <div class="grid grid-cols-3 gap-4 text-center">
+          <div>
+            <div class="text-2xl font-bold text-blue-600">✓</div>
+            <div class="text-xs text-gray-600">Proof of Concept</div>
+          </div>
+          <div>
+            <div class="text-2xl font-bold text-green-600">3+</div>
+            <div class="text-xs text-gray-600">Verified Algorithms</div>
+          </div>
+          <div>
+            <div class="text-2xl font-bold text-purple-600">Live</div>
+            <div class="text-xs text-gray-600">Demo Available</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-white p-8 rounded-lg shadow-md">
+        <div class="flex items-center gap-4 mb-6">
+          <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
+            <Icon class="w-6 h-6 text-green-600" name="bx:bx-search-alt" />
+          </div>
+          <div>
+            <h4 class="font-bold text-lg">Market Research</h4>
+            <p class="text-sm text-gray-600">Industry Interest & Validation</p>
+          </div>
+        </div>
+        
+        <p class="text-gray-700 mb-6">
+          Our market research reveals strong industry demand for mathematical verification solutions, 
+          with financial institutions actively seeking alternatives to manual model validation.
+        </p>
+        
+        <div class="grid grid-cols-3 gap-4 text-center">
+          <div>
+            <div class="text-2xl font-bold text-blue-600">High</div>
+            <div class="text-xs text-gray-600">Market Interest</div>
+          </div>
+          <div>
+            <div class="text-2xl font-bold text-green-600">$B+</div>
+            <div class="text-xs text-gray-600">Problem Scale</div>
+          </div>
+          <div>
+            <div class="text-2xl font-bold text-purple-600">Early</div>
+            <div class="text-xs text-gray-600">Stage Validation</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Technical Resources -->
+  <div class="grid lg:grid-cols-4 gap-6">
+    <div class="text-center">
+      <Icon class="w-12 h-12 text-blue-600 mx-auto mb-4" name="bx:bx-book-open" />
+      <h4 class="font-semibold mb-2">Technical Documentation</h4>
+      <p class="text-sm text-gray-600 mb-4">Comprehensive API docs and integration guides</p>
+      <a href="/docs" class="text-blue-600 hover:underline font-medium">View Docs →</a>
+    </div>
+
+    <div class="text-center">
+      <Icon class="w-12 h-12 text-green-600 mx-auto mb-4" name="bx:bxl-github" />
+      <h4 class="font-semibold mb-2">Open Source Examples</h4>
+      <p class="text-sm text-gray-600 mb-4">Sample implementations and code repositories</p>
+      <a href="https://github.com/veriquant" target="_blank" class="text-green-600 hover:underline font-medium">GitHub →</a>
+    </div>
+
+    <div class="text-center">
+      <Icon class="w-12 h-12 text-purple-600 mx-auto mb-4" name="bx:bx-play-circle" />
+      <h4 class="font-semibold mb-2">Video Tutorials</h4>
+      <p class="text-sm text-gray-600 mb-4">Step-by-step guides for common use cases</p>
+      <a href="/tutorials" class="text-purple-600 hover:underline font-medium">Watch Now →</a>
+    </div>
+
+    <div class="text-center">
+      <Icon class="w-12 h-12 text-orange-600 mx-auto mb-4" name="bx:bx-support" />
+      <h4 class="font-semibold mb-2">Expert Support</h4>
+      <p class="text-sm text-gray-600 mb-4">Direct access to our technical team</p>
+      <a href="/support" class="text-orange-600 hover:underline font-medium">Get Help →</a>
+    </div>
+  </div>
+</div>

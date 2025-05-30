@@ -1,0 +1,369 @@
+---
+import Container from "@/components/container.astro";
+import Sectionhead from "@/components/sectionhead.astro";
+import Layout from "@/layouts/Layout.astro";
+import { Icon } from "astro-icon/components";
+import Button from "@/components/ui/button.astro";
+
+// Get the Web3Forms access key from environment variables
+const web3formsKey = import.meta.env.WEB3FORMS_ACCESS_KEY;
+---
+
+<Layout title="Market Survey | VeriQuant - Gather Evidence of Demand">
+  <Container>
+    <Sectionhead>
+      <Fragment slot="title">Market Survey</Fragment>
+      <Fragment slot="desc">
+        Help us understand your requirements for mathematical verification in finance
+      </Fragment>
+    </Sectionhead>
+
+    <div class="mx-auto max-w-4xl mt-16">
+      <!-- Survey Introduction -->
+      <div class="text-center mb-12">
+        <h2 class="text-3xl lg:text-4xl font-bold text-gray-800 mb-6">
+          Evidence of Demand
+        </h2>
+        <p class="text-lg text-slate-600 leading-relaxed max-w-3xl mx-auto">
+          VeriQuant is gathering market insights to better understand the formal verification 
+          needs in quantitative finance. Your input will help us prioritize features and 
+          build solutions that address the most critical challenges in the industry.
+        </p>
+      </div>
+
+      <!-- Survey Form -->
+      <div class="bg-gradient-to-br from-blue-50 to-indigo-100 p-8 rounded-xl mb-16">
+        <form
+          action="https://api.web3forms.com/submit"
+          method="POST"
+          id="survey-form"
+          class="needs-validation space-y-8"
+          novalidate>
+          <!-- Replace this with your actual Web3Forms access key -->
+          <input type="hidden" name="access_key" value={web3formsKey} />
+          <input type="hidden" name="subject" value="New VeriQuant Market Survey Submission" />
+          <input type="hidden" name="from_name" value="VeriQuant Market Survey" />
+          <input type="hidden" name="redirect" value="https://web3forms.com/success" />
+          <input type="checkbox" class="hidden" style="display:none" name="botcheck" />
+
+          <!-- Organization Information -->
+          <div class="bg-white p-6 rounded-lg shadow">
+            <h3 class="text-xl font-semibold mb-4 text-gray-800">Organization Information</h3>
+            <div class="grid md:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2">Organization Type</label>
+                <select 
+                  name="organization_type"
+                  class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  required>
+                  <option value="">Select type...</option>
+                  <option value="asset-manager">Asset Manager</option>
+                  <option value="hedge-fund">Hedge Fund</option>
+                  <option value="pension-fund">Pension Fund</option>
+                  <option value="insurance">Insurance Company</option>
+                  <option value="bank">Bank/Financial Institution</option>
+                  <option value="family-office">Family Office</option>
+                  <option value="fintech">FinTech Company</option>
+                  <option value="consulting">Consulting Firm</option>
+                  <option value="academic">Academic Institution</option>
+                  <option value="other">Other</option>
+                </select>
+                <div class="empty-feedback invalid-feedback text-red-400 text-sm mt-1">
+                  Please select your organization type.
+                </div>
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2">Assets Under Management</label>
+                <select 
+                  name="aum" 
+                  class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                  <option value="">Select range...</option>
+                  <option value="under-100m">Under $100M</option>
+                  <option value="100m-1b">$100M - $1B</option>
+                  <option value="1b-10b">$1B - $10B</option>
+                  <option value="10b-50b">$10B - $50B</option>
+                  <option value="over-50b">Over $50B</option>
+                  <option value="na">Not Applicable</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <!-- Current Challenges -->
+          <div class="bg-white p-6 rounded-lg shadow">
+            <h3 class="text-xl font-semibold mb-4 text-gray-800">Current Challenges</h3>
+            <div class="space-y-6">
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2">
+                  What are your biggest challenges in quantitative finance? (Select all that apply)
+                </label>
+                <div class="grid md:grid-cols-2 gap-3">
+                  <label class="flex items-center">
+                    <input type="checkbox" name="challenges" value="model-validation" class="rounded border-gray-300 text-blue-600 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50">
+                    <span class="ml-2 text-sm text-gray-700">Model validation and testing</span>
+                  </label>
+                  <label class="flex items-center">
+                    <input type="checkbox" name="challenges" value="regulatory-compliance" class="rounded border-gray-300 text-blue-600 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50">
+                    <span class="ml-2 text-sm text-gray-700">Regulatory compliance</span>
+                  </label>
+                  <label class="flex items-center">
+                    <input type="checkbox" name="challenges" value="risk-management" class="rounded border-gray-300 text-blue-600 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50">
+                    <span class="ml-2 text-sm text-gray-700">Risk management accuracy</span>
+                  </label>
+                  <label class="flex items-center">
+                    <input type="checkbox" name="challenges" value="mathematical-proof" class="rounded border-gray-300 text-blue-600 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50">
+                    <span class="ml-2 text-sm text-gray-700">Mathematical proof requirements</span>
+                  </label>
+                  <label class="flex items-center">
+                    <input type="checkbox" name="challenges" value="system-integration" class="rounded border-gray-300 text-blue-600 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50">
+                    <span class="ml-2 text-sm text-gray-700">Integration with existing systems</span>
+                  </label>
+                  <label class="flex items-center">
+                    <input type="checkbox" name="challenges" value="audit-costs" class="rounded border-gray-300 text-blue-600 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50">
+                    <span class="ml-2 text-sm text-gray-700">High audit and compliance costs</span>
+                  </label>
+                </div>
+              </div>
+
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2">
+                  How much does your organization currently spend annually on model validation and compliance?
+                </label>
+                <select 
+                  name="validation_spend" 
+                  class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                  <option value="">Select range...</option>
+                  <option value="under-100k">Under $100K</option>
+                  <option value="100k-500k">$100K - $500K</option>
+                  <option value="500k-1m">$500K - $1M</option>
+                  <option value="1m-5m">$1M - $5M</option>
+                  <option value="5m-10m">$5M - $10M</option>
+                  <option value="over-10m">Over $10M</option>
+                  <option value="unknown">Don't know</option>
+                </select>
+              </div>
+
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2">
+                  Have you experienced financial losses due to model validation errors in the past 3 years?
+                </label>
+                <div class="space-y-2">
+                  <label class="flex items-center">
+                    <input type="radio" name="model_losses" value="yes-significant" class="border-gray-300 text-blue-600 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50">
+                    <span class="ml-2 text-sm text-gray-700">Yes, significant losses (>$1M)</span>
+                  </label>
+                  <label class="flex items-center">
+                    <input type="radio" name="model_losses" value="yes-moderate" class="border-gray-300 text-blue-600 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50">
+                    <span class="ml-2 text-sm text-gray-700">Yes, moderate losses ($100K-$1M)</span>
+                  </label>
+                  <label class="flex items-center">
+                    <input type="radio" name="model_losses" value="yes-minor" class="border-gray-300 text-blue-600 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50">
+                    <span class="ml-2 text-sm text-gray-700">Yes, minor losses (<$100K)</span>
+                  </label>
+                  <label class="flex items-center">
+                    <input type="radio" name="model_losses" value="no" class="border-gray-300 text-blue-600 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50">
+                    <span class="ml-2 text-sm text-gray-700">No documented losses</span>
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Solution Interest -->
+          <div class="bg-white p-6 rounded-lg shadow">
+            <h3 class="text-xl font-semibold mb-4 text-gray-800">Solution Interest</h3>
+            <div class="space-y-6">
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2">
+                  How interested would your organization be in an automated mathematical verification solution?
+                </label>
+                <div class="space-y-2">
+                  <label class="flex items-center">
+                    <input type="radio" name="interest_level" value="extremely" class="border-gray-300 text-blue-600 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50" required>
+                    <span class="ml-2 text-sm text-gray-700">Extremely interested - would implement immediately</span>
+                  </label>
+                  <label class="flex items-center">
+                    <input type="radio" name="interest_level" value="very" class="border-gray-300 text-blue-600 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50">
+                    <span class="ml-2 text-sm text-gray-700">Very interested - would pilot within 6 months</span>
+                  </label>
+                  <label class="flex items-center">
+                    <input type="radio" name="interest_level" value="moderate" class="border-gray-300 text-blue-600 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50">
+                    <span class="ml-2 text-sm text-gray-700">Moderately interested - would evaluate</span>
+                  </label>
+                  <label class="flex items-center">
+                    <input type="radio" name="interest_level" value="low" class="border-gray-300 text-blue-600 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50">
+                    <span class="ml-2 text-sm text-gray-700">Low interest - not a current priority</span>
+                  </label>
+                </div>
+                <div class="empty-feedback invalid-feedback text-red-400 text-sm mt-1">
+                  Please select your interest level.
+                </div>
+              </div>
+
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2">
+                  What budget range would be reasonable for a comprehensive mathematical verification solution?
+                </label>
+                <select 
+                  name="budget_range" 
+                  class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                  <option value="">Select range...</option>
+                  <option value="under-50k">Under $50K annually</option>
+                  <option value="50k-200k">$50K - $200K annually</option>
+                  <option value="200k-500k">$200K - $500K annually</option>
+                  <option value="500k-1m">$500K - $1M annually</option>
+                  <option value="over-1m">Over $1M annually</option>
+                  <option value="depends">Depends on ROI demonstration</option>
+                </select>
+              </div>
+
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2">
+                  Would you be interested in participating in a beta program or pilot study?
+                </label>
+                <div class="space-y-2">
+                  <label class="flex items-center">
+                    <input type="radio" name="beta_interest" value="yes-definitely" class="border-gray-300 text-blue-600 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50">
+                    <span class="ml-2 text-sm text-gray-700">Yes, definitely - please contact me</span>
+                  </label>
+                  <label class="flex items-center">
+                    <input type="radio" name="beta_interest" value="yes-maybe" class="border-gray-300 text-blue-600 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50">
+                    <span class="ml-2 text-sm text-gray-700">Maybe - would need more information</span>
+                  </label>
+                  <label class="flex items-center">
+                    <input type="radio" name="beta_interest" value="no" class="border-gray-300 text-blue-600 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50">
+                    <span class="ml-2 text-sm text-gray-700">No, not at this time</span>
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Contact Information -->
+          <div class="bg-white p-6 rounded-lg shadow">
+            <h3 class="text-xl font-semibold mb-4 text-gray-800">Contact Information</h3>
+            <div class="grid md:grid-cols-2 gap-4">
+              <div>
+                <label for="name" class="block text-sm font-medium text-gray-700 mb-2">Name</label>
+                <input 
+                  id="name"
+                  type="text" 
+                  name="name"
+                  required
+                  class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  placeholder="Your name"
+                >
+                <div class="empty-feedback invalid-feedback text-red-400 text-sm mt-1">
+                  Please provide your name.
+                </div>
+              </div>
+              <div>
+                <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Email</label>
+                <input 
+                  id="email"
+                  type="email" 
+                  name="email"
+                  required
+                  class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  placeholder="your.email@company.com"
+                >
+                <div class="empty-feedback text-red-400 text-sm mt-1">
+                  Please provide your email address.
+                </div>
+                <div class="invalid-feedback text-red-400 text-sm mt-1">
+                  Please provide a valid email address.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Submit Button -->
+          <div class="text-center">
+            <Button type="submit" size="lg" class="px-8 py-3">
+              <Icon name="bx:bx-send" class="w-5 h-5 mr-2" />
+              Submit Survey
+            </Button>
+          </div>
+          <div id="result" class="mt-3 text-center"></div>
+        </form>
+      </div>
+    </div>
+  </Container>
+</Layout>
+
+<style>
+  .invalid-feedback,
+  .empty-feedback {
+    display: none;
+  }
+
+  .was-validated :placeholder-shown:invalid ~ .empty-feedback {
+    display: block;
+  }
+
+  .was-validated :not(:placeholder-shown):invalid ~ .invalid-feedback {
+    display: block;
+  }
+
+  .is-invalid,
+  .was-validated :invalid {
+    border-color: #dc3545;
+  }
+</style>
+
+<script>
+  const form = document.getElementById("survey-form") as HTMLFormElement;
+  const result = document.getElementById("result") as HTMLElement;
+
+  if (form && result) {
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      form.classList.add("was-validated");
+      if (!form.checkValidity()) {
+        const invalidElement = form.querySelectorAll(":invalid")[0] as HTMLElement;
+        if (invalidElement && invalidElement.focus) {
+          invalidElement.focus();
+        }
+        return;
+      }
+      const formData = new FormData(form);
+      const object = Object.fromEntries(formData);
+      const json = JSON.stringify(object);
+
+      result.innerHTML = "Sending...";
+
+      fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: json,
+      })
+        .then(async (response) => {
+          let json = await response.json();
+          if (response.status == 200) {
+            result.classList.add("text-green-500");
+            result.innerHTML = json.message;
+          } else {
+            console.log(response);
+            result.classList.add("text-red-500");
+            result.innerHTML = json.message;
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+          result.classList.add("text-red-500");
+          result.innerHTML = "Something went wrong!";
+        })
+        .then(function () {
+          form.reset();
+          form.classList.remove("was-validated");
+          setTimeout(() => {
+            result.style.display = "none";
+          }, 5000);
+        });
+    });
+  }
+</script>
+</Layout>

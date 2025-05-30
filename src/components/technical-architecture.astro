@@ -1,0 +1,127 @@
+---
+import { Icon } from "astro-icon/components";
+---
+
+<div class="mt-20">
+  <div class="text-center mb-16">
+    <h2 class="text-4xl lg:text-5xl font-bold lg:tracking-tight">
+      Technical Architecture: LLM Agent-Powered Verification
+    </h2>
+    <p class="text-lg mt-4 text-slate-600 max-w-4xl mx-auto">
+      Our breakthrough approach combines Large Language Models with formal verification techniques, 
+      creating autonomous agents that can understand, analyze, and verify complex quantitative finance models 
+      with mathematical rigor.
+    </p>
+  </div>
+
+  <!-- Core Architecture -->
+  <div class="grid lg:grid-cols-2 gap-12 mb-16">
+    <div>
+      <h3 class="text-3xl font-bold mb-6">Multi-Agent System Design</h3>
+      <div class="space-y-6">
+        <div class="flex gap-4 items-start">
+          <div class="mt-1 bg-blue-500 rounded-full p-2 w-10 h-10 shrink-0">
+            <Icon class="text-white w-6 h-6" name="bx:bx-brain" />
+          </div>
+          <div>
+            <h4 class="font-semibold text-lg">Mathematical Reasoning Agent</h4>
+            <p class="text-slate-600 mt-1">Specialized LLM fine-tuned on mathematical proofs and quantitative finance literature, capable of understanding complex financial models and their underlying mathematical foundations.</p>
+          </div>
+        </div>
+
+        <div class="flex gap-4 items-start">
+          <div class="mt-1 bg-green-500 rounded-full p-2 w-10 h-10 shrink-0">
+            <Icon class="text-white w-6 h-6" name="bx:bx-check-shield" />
+          </div>
+          <div>
+            <h4 class="font-semibold text-lg">Formal Verification Agent</h4>
+            <p class="text-slate-600 mt-1">Converts mathematical models into formal specifications using Lean 4 theorem prover, ensuring mathematical correctness with provable guarantees.</p>
+          </div>
+        </div>
+
+        <div class="flex gap-4 items-start">
+          <div class="mt-1 bg-purple-500 rounded-full p-2 w-10 h-10 shrink-0">
+            <Icon class="text-white w-6 h-6" name="bx:bx-bug" />
+          </div>
+          <div>
+            <h4 class="font-semibold text-lg">Error Detection Agent</h4>
+            <p class="text-slate-600 mt-1">Continuously monitors model execution, detects anomalies, and provides detailed analysis of potential mathematical inconsistencies or edge cases.</p>
+          </div>
+        </div>
+
+        <div class="flex gap-4 items-start">
+          <div class="mt-1 bg-orange-500 rounded-full p-2 w-10 h-10 shrink-0">
+            <Icon class="text-white w-6 h-6" name="bx:bx-file-find" />
+          </div>
+          <div>
+            <h4 class="font-semibold text-lg">Regulatory Compliance Agent</h4>
+            <p class="text-slate-600 mt-1">Ensures models meet regulatory requirements (Basel III, CCAR, IFRS 17) by validating against regulatory mathematical frameworks and generating compliance reports.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-gradient-to-br from-blue-50 to-indigo-100 p-8 rounded-xl">
+      <h3 class="text-2xl font-bold mb-6">Technical Innovation</h3>
+      
+      <div class="space-y-4">
+        <div class="bg-white p-4 rounded-lg shadow-sm">
+          <h4 class="font-semibold text-blue-800">Novel LLM Training Approach</h4>
+          <p class="text-sm text-slate-600 mt-1">Building domain-specific LLM capabilities for mathematical reasoning in quantitative finance using reinforcement learning from formal verification feedback.</p>
+        </div>
+        
+        <div class="bg-white p-4 rounded-lg shadow-sm">
+          <h4 class="font-semibold text-green-800">Formal Methods Integration</h4>
+          <p class="text-sm text-slate-600 mt-1">First-of-its-kind integration between LLMs and Lean 4 theorem prover for automated mathematical verification in finance.</p>
+        </div>
+        
+        <div class="bg-white p-4 rounded-lg shadow-sm">
+          <h4 class="font-semibold text-purple-800">Real-Time Verification Research</h4>
+          <p class="text-sm text-slate-600 mt-1">Developing incremental verification algorithms targeting real-time validation of model changes with optimized response times.</p>
+        </div>
+        
+        <div class="bg-white p-4 rounded-lg shadow-sm">
+          <h4 class="font-semibold text-orange-800">Enterprise Integration Design</h4>
+          <p class="text-sm text-slate-600 mt-1">Architecting RESTful APIs and planned connectors for major platforms (MATLAB, R, Python, Bloomberg Terminal, Refinitiv).</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Development Progress -->
+  <div class="bg-gray-900 text-white p-8 lg:p-12 rounded-xl">
+    <h3 class="text-3xl font-bold mb-8 text-center">Development Progress & Technical Goals</h3>
+    
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div class="text-center">
+        <div class="text-3xl font-bold text-blue-400 mb-2">MVP</div>
+        <p class="text-sm text-gray-300">Building minimum viable product with core verification capabilities</p>
+      </div>
+      
+      <div class="text-center">
+        <div class="text-3xl font-bold text-green-400 mb-2">Lean 4</div>
+        <p class="text-sm text-gray-300">Integrating formal verification with theorem prover technology</p>
+      </div>
+      
+      <div class="text-center">
+        <div class="text-3xl font-bold text-purple-400 mb-2">Multi-Agent</div>
+        <p class="text-sm text-gray-300">Developing coordinated AI system for model verification</p>
+      </div>
+      
+      <div class="text-center">
+        <div class="text-3xl font-bold text-orange-400 mb-2">Prototype</div>
+        <p class="text-sm text-gray-300">Working demonstration of binomial options pricing verification</p>
+      </div>
+    </div>
+
+    <div class="mt-8 text-center">
+      <a 
+        href="https://jasonamilne.github.io/veriquant-demo" 
+        target="_blank"
+        class="inline-flex items-center gap-2 bg-white text-gray-900 px-6 py-3 rounded-lg hover:bg-gray-100 transition-colors">
+        <Icon class="w-5 h-5" name="bx:bx-play-circle" />
+        View Prototype Demo
+      </a>
+    </div>
+  </div>
+</div>

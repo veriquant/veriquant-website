@@ -20,8 +20,8 @@ const resolvedImageWithDomain = new URL(
 const { title } = Astro.props;
 
 const makeTitle = title
-  ? title + " | " + "Astroship"
-  : "Astroship - Starter Template for Astro with Tailwind CSS";
+  ? title + " | " + "VeriQuant"
+  : "VeriQuant - Provably Correct Quantitative Finance with AI Agents";
 ---
 
 <!doctype html>
@@ -35,22 +35,22 @@ const makeTitle = title
     <!-- <link rel="preload" as="image" href={src} alt="Hero" /> -->
     <SEO
       title={makeTitle}
-      description="Astroship is a starter website template for Astro built with TailwindCSS."
+      description="VeriQuant leverages LLM agents and formal verification to eliminate mathematical errors in financial models, ensuring regulatory compliance and reducing multi-billion dollar losses."
       canonical={canonicalURL}
       twitter={{
-        creator: "@surjithctly",
-        site: "@web3templates",
+        creator: "@veriquant",
+        site: "@veriquant",
         card: "summary_large_image",
       }}
       openGraph={{
         basic: {
           url: canonicalURL,
           type: "website",
-          title: `Astroship - Starter Template for Astro`,
+          title: `VeriQuant - Provably Correct Quantitative Finance with AI Agents`,
           image: resolvedImageWithDomain,
         },
         image: {
-          alt: "Astroship Homepage Screenshot",
+          alt: "VeriQuant Homepage Screenshot",
         },
       }}
     />
