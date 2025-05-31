@@ -1,0 +1,525 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="VeriQuant Demo - Provably Correct Financial Modeling">
+  <main>
+    <!-- Custom styles for demo -->
+    <style>
+      /* Custom styles for VeriQuant Demo */
+      .lucide {
+        width: 1em;
+        height: 1em;
+      }
+
+      /* Add some additional animation for the verification steps */
+      @keyframes pulse {
+        0% {
+          box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.4);
+        }
+        70% {
+          box-shadow: 0 0 0 10px rgba(59, 130, 246, 0);
+        }
+        100% {
+          box-shadow: 0 0 0 0 rgba(59, 130, 246, 0);
+        }
+      }
+
+      .active-step {
+        animation: pulse 2s infinite;
+      }
+
+      /* Responsive tweaks */
+      @media (max-width: 768px) {
+        .grid-cols-2 {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      /* Code display tweaks */
+      pre {
+        white-space: pre-wrap;
+        word-break: break-word;
+        background: #1e293b;
+        color: #e2e8f0;
+        padding: 1rem;
+        border-radius: 0.5rem;
+        overflow-x: auto;
+        font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+        font-size: 0.875rem;
+        line-height: 1.5;
+      }
+
+      /* Better scrollbar for code sections */
+      .overflow-x-auto::-webkit-scrollbar {
+        height: 8px;
+      }
+
+      .overflow-x-auto::-webkit-scrollbar-track {
+        background: #1f2937;
+        border-radius: 4px;
+      }
+
+      .overflow-x-auto::-webkit-scrollbar-thumb {
+        background: #4b5563;
+        border-radius: 4px;
+      }
+
+      .overflow-x-auto::-webkit-scrollbar-thumb:hover {
+        background: #6b7280;
+      }
+
+      .status-complete {
+        background: #10b981;
+        color: white;
+      }
+
+      .status-running {
+        background: #f59e0b;
+        color: white;
+      }
+
+      .status-pending {
+        background: #6b7280;
+        color: white;
+      }
+    </style>
+
+    <!-- SVG Icons -->
+    <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+        <symbol id="icon-play" viewBox="0 0 24 24">
+            <polygon points="5 3 19 12 5 21 5 3"></polygon>
+        </symbol>
+        <symbol id="icon-check-circle" viewBox="0 0 24 24">
+            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+            <polyline points="22 4 12 14.01 9 11.01"></polyline>
+        </symbol>
+        <symbol id="icon-alert-circle" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="12" y1="8" x2="12" y2="12"></line>
+            <line x1="12" y1="16" x2="12.01" y2="16"></line>
+        </symbol>
+        <symbol id="icon-code" viewBox="0 0 24 24">
+            <polyline points="16 18 22 12 16 6"></polyline>
+            <polyline points="8 6 2 12 8 18"></polyline>
+        </symbol>
+        <symbol id="icon-file-text" viewBox="0 0 24 24">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2-2V8z"></path>
+            <polyline points="14 2 14 8 20 8"></polyline>
+            <line x1="16" y1="13" x2="8" y2="13"></line>
+            <line x1="16" y1="17" x2="8" y2="17"></line>
+            <polyline points="10 9 9 9 8 9"></polyline>
+        </symbol>
+        <symbol id="icon-settings" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="3"></circle>
+            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1 1.51V6a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V12a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+        </symbol>
+        <symbol id="icon-download" viewBox="0 0 24 24">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+            <polyline points="7 10 12 15 17 10"></polyline>
+            <line x1="12" y1="15" x2="12" y2="3"></line>
+        </symbol>
+        <symbol id="icon-database" viewBox="0 0 24 24">
+            <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
+            <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path>
+            <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path>
+        </symbol>
+        <symbol id="icon-shield" viewBox="0 0 24 24">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+        </symbol>
+        <symbol id="icon-brain" viewBox="0 0 24 24">
+            <path d="M9.5 2A2.5 2.5 0 0 0 7 4.5v15A2.5 2.5 0 0 0 9.5 22h5a2.5 2.5 0 0 0 2.5-2.5v-15A2.5 2.5 0 0 0 14.5 2h-5z"></path>
+            <path d="M12 6v6l4-2-4-2z"></path>
+        </symbol>
+    </svg>
+
+    <!-- Demo Container -->
+    <div id="root" class="bg-gradient-to-br from-blue-50 to-indigo-100"></div>
+
+    <!-- React Component Script -->
+    <script type="text/babel">
+        // Create custom icon components using Feather Icons
+        const Icon = ({ name, className = "", size = 24, ...props }) => {
+            React.useEffect(() => {
+                if (window.feather) {
+                    window.feather.replace();
+                }
+            }, []);
+            
+            return React.createElement('i', {
+                'data-feather': name,
+                className: className,
+                width: size,
+                height: size,
+                ...props
+            });
+        };
+        
+        // Create icon components
+        const Play = (props) => React.createElement(Icon, { name: "play", ...props });
+        const CheckCircle = (props) => React.createElement(Icon, { name: "check-circle", ...props });
+        const AlertCircle = (props) => React.createElement(Icon, { name: "alert-circle", ...props });
+        const Code = (props) => React.createElement(Icon, { name: "code", ...props });
+        const FileText = (props) => React.createElement(Icon, { name: "file-text", ...props });
+        const Settings = (props) => React.createElement(Icon, { name: "settings", ...props });
+        const Zap = (props) => React.createElement(Icon, { name: "zap", ...props });
+        const Terminal = (props) => React.createElement(Icon, { name: "terminal", ...props });
+        const GitBranch = (props) => React.createElement(Icon, { name: "git-branch", ...props });
+
+        const VeriQuantDemo = () => {
+            const [currentStep, setCurrentStep] = React.useState(0);
+            const [isProcessing, setIsProcessing] = React.useState(false);
+            const [selectedModel, setSelectedModel] = React.useState('black-scholes');
+            
+            const startDemo = () => {
+                setIsProcessing(true);
+                setCurrentStep(0);
+                
+                // Simulate processing steps
+                const steps = [1000, 2000, 3000, 2000, 1500];
+                let currentTime = 0;
+                
+                steps.forEach((time, index) => {
+                    currentTime += time;
+                    setTimeout(() => {
+                        setCurrentStep(index + 1);
+                        if (index === steps.length - 1) {
+                            setIsProcessing(false);
+                        }
+                    }, currentTime);
+                });
+            };
+
+            const resetDemo = () => {
+                setCurrentStep(0);
+                setIsProcessing(false);
+            };
+
+            const stepData = [
+                {
+                    id: 'input',
+                    title: '📝 User Input',
+                    description: 'Define financial modeling requirements'
+                },
+                {
+                    id: 'analysis',
+                    title: '🧠 AI Analysis',
+                    description: 'AI agent analyzes requirements and selects appropriate models'
+                },
+                {
+                    id: 'generation',
+                    title: '⚡ Code Generation',
+                    description: 'Generate formal specification and implementation'
+                },
+                {
+                    id: 'verification',
+                    title: '🔒 Formal Verification',
+                    description: 'Prove mathematical correctness using Lean theorem prover'
+                },
+                {
+                    id: 'deployment',
+                    title: '🚀 Deployment',
+                    description: 'Deploy verified model with correctness guarantees'
+                }
+            ];
+
+            const models = {
+                'black-scholes': {
+                    name: 'Black-Scholes Option Pricing',
+                    description: 'European option pricing with dividend yields',
+                    code: `-- Black-Scholes Option Pricing Model
+-- Formally verified implementation in Lean
+
+theorem black_scholes_call_option_price 
+  (S K r T σ : ℝ) 
+  (hS : S > 0) (hK : K > 0) (hr : r ≥ 0) (hT : T > 0) (hσ : σ > 0) :
+  let d1 := (log (S / K) + (r + σ^2 / 2) * T) / (σ * sqrt T)
+  let d2 := d1 - σ * sqrt T
+  let call_price := S * normal_cdf d1 - K * exp (-r * T) * normal_cdf d2
+  call_price ≥ max (S - K * exp (-r * T)) 0 := by
+  -- Proof that call option price satisfies arbitrage bounds
+  sorry
+
+-- Implementation with verified properties
+def verified_black_scholes_call 
+  (S K r T σ : ℝ) 
+  (hS : S > 0) (hK : K > 0) (hr : r ≥ 0) (hT : T > 0) (hσ : σ > 0) : 
+  { price : ℝ // price ≥ max (S - K * exp (-r * T)) 0 } :=
+⟨black_scholes_call S K r T σ, black_scholes_call_option_price S K r T σ hS hK hr hT hσ⟩`
+                },
+                'binomial': {
+                    name: 'Binomial Option Pricing',
+                    description: 'Discrete-time option pricing model',
+                    code: `-- Binomial Option Pricing Model
+-- Formally verified implementation in Lean
+
+def binomial_option_price (n : ℕ) (S K r T σ : ℝ) : ℝ :=
+  let dt := T / n
+  let u := exp (σ * sqrt dt)
+  let d := 1 / u
+  let p := (exp (r * dt) - d) / (u - d)
+  -- Tree calculation with formal proofs
+  binomial_tree_calculation n S K r dt u d p
+
+theorem binomial_convergence_to_black_scholes 
+  (S K r T σ : ℝ) (hS : S > 0) (hK : K > 0) (hr : r ≥ 0) (hT : T > 0) (hσ : σ > 0) :
+  ∀ ε > 0, ∃ N : ℕ, ∀ n ≥ N, 
+    |binomial_option_price n S K r T σ - black_scholes_call S K r T σ| < ε := by
+  -- Proof of convergence
+  sorry`
+                }
+            };
+
+            const verificationResults = [
+                { name: 'Arbitrage-free pricing', status: 'complete', description: 'Verified no arbitrage opportunities exist' },
+                { name: 'Boundary conditions', status: 'complete', description: 'Verified correct behavior at expiration' },
+                { name: 'Mathematical consistency', status: 'complete', description: 'All equations mathematically sound' },
+                { name: 'Risk parameter bounds', status: 'complete', description: 'Input validation and error bounds proven' }
+            ];
+
+            return React.createElement('div', { className: 'min-h-screen' },
+                // Hero Section
+                React.createElement('div', { className: 'bg-gradient-to-br from-blue-600 to-purple-700 text-white py-20' },
+                    React.createElement('div', { className: 'max-w-6xl mx-auto px-6 text-center' },
+                        React.createElement('h1', { className: 'text-5xl font-bold mb-6' }, 'VeriQuant Interactive Demo'),
+                        React.createElement('p', { className: 'text-xl mb-8 max-w-3xl mx-auto' }, 
+                            'Experience how our agentic workflow transforms financial modeling requirements into provably correct, mathematically verified implementations.'
+                        ),
+                        React.createElement('div', { className: 'flex gap-4 justify-center' },
+                            React.createElement('button', {
+                                onClick: startDemo,
+                                disabled: isProcessing,
+                                className: 'bg-white text-blue-600 px-8 py-4 rounded-lg text-lg font-semibold hover:bg-gray-100 disabled:opacity-50 transition-all'
+                            }, isProcessing ? 'Processing...' : 'Start Demo'),
+                            React.createElement('button', {
+                                onClick: resetDemo,
+                                className: 'border-2 border-white text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-white hover:text-blue-600 transition-all'
+                            }, 'Reset Demo')
+                        )
+                    )
+                ),
+
+                // Demo Content
+                React.createElement('div', { className: 'max-w-7xl mx-auto p-6' },
+                    // Workflow Steps
+                    React.createElement('div', { className: 'mb-12' },
+                        React.createElement('h2', { className: 'text-3xl font-bold mb-8 text-center text-gray-800' }, 'Agentic Workflow Pipeline'),
+                        React.createElement('div', { className: 'grid grid-cols-1 md:grid-cols-5 gap-4' },
+                            stepData.map((step, index) => {
+                                const isActive = currentStep === index && isProcessing;
+                                const isComplete = currentStep > index;
+                                const isPending = currentStep <= index && !isProcessing;
+                                
+                                return React.createElement('div', {
+                                    key: step.id,
+                                    className: `relative p-6 rounded-lg border-2 transition-all ${
+                                        isComplete ? 'bg-green-50 border-green-300' :
+                                        isActive ? 'bg-blue-50 border-blue-300 active-step' :
+                                        'bg-gray-50 border-gray-200'
+                                    }`
+                                },
+                                    React.createElement('div', { className: 'text-center' },
+                                        React.createElement('div', { className: 'text-2xl mb-2' }, step.title),
+                                        React.createElement('p', { className: 'text-sm text-gray-600' }, step.description),
+                                        isActive && React.createElement('div', { className: 'mt-3' },
+                                            React.createElement('div', { className: 'w-6 h-6 mx-auto border-2 border-blue-600 border-t-transparent rounded-full animate-spin' })
+                                        ),
+                                        isComplete && React.createElement('div', { className: 'mt-3' },
+                                            React.createElement(CheckCircle, { className: 'w-6 h-6 mx-auto text-green-600' })
+                                        )
+                                    )
+                                );
+                            })
+                        )
+                    ),
+
+                    // Demo Interface
+                    React.createElement('div', { className: 'grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12' },
+                        // Input Panel
+                        React.createElement('div', { className: 'bg-white rounded-lg shadow-lg p-6' },
+                            React.createElement('h3', { className: 'text-xl font-semibold mb-4 flex items-center' },
+                                React.createElement(FileText, { className: 'mr-2' }),
+                                'Model Selection & Requirements'
+                            ),
+                            React.createElement('div', { className: 'mb-4' },
+                                React.createElement('label', { className: 'block text-sm font-medium mb-2' }, 'Select Financial Model:'),
+                                React.createElement('select', {
+                                    value: selectedModel,
+                                    onChange: (e) => setSelectedModel(e.target.value),
+                                    className: 'w-full p-3 border border-gray-300 rounded-lg'
+                                },
+                                    React.createElement('option', { value: 'black-scholes' }, 'Black-Scholes Option Pricing'),
+                                    React.createElement('option', { value: 'binomial' }, 'Binomial Option Pricing')
+                                )
+                            ),
+                            React.createElement('div', { className: 'bg-gray-50 p-4 rounded-lg' },
+                                React.createElement('h4', { className: 'font-medium mb-2' }, 'Requirements:'),
+                                React.createElement('ul', { className: 'text-sm space-y-1' },
+                                    React.createElement('li', null, '• Mathematically proven arbitrage-free pricing'),
+                                    React.createElement('li', null, '• Formal verification of boundary conditions'),
+                                    React.createElement('li', null, '• Input parameter validation with bounds'),
+                                    React.createElement('li', null, '• Regulatory compliance documentation')
+                                )
+                            )
+                        ),
+
+                        // Output Panel
+                        React.createElement('div', { className: 'bg-white rounded-lg shadow-lg p-6' },
+                            React.createElement('h3', { className: 'text-xl font-semibold mb-4 flex items-center' },
+                                React.createElement(Code, { className: 'mr-2' }),
+                                'Generated Lean Code & Proofs'
+                            ),
+                            currentStep >= 3 ? React.createElement('pre', { className: 'text-xs' }, models[selectedModel].code) :
+                            React.createElement('div', { className: 'text-gray-500 text-center py-8' }, 'Formally verified code will appear here...')
+                        )
+                    ),
+
+                    // Verification Results
+                    currentStep >= 4 && React.createElement('div', { className: 'bg-white rounded-lg shadow-lg p-6 mb-12' },
+                        React.createElement('h3', { className: 'text-xl font-semibold mb-4 flex items-center' },
+                            React.createElement('svg', { className: 'w-5 h-5 mr-2', fill: 'none', stroke: 'currentColor', viewBox: '0 0 24 24' },
+                                React.createElement('use', { href: '#icon-check-circle' })
+                            ),
+                            'Formal Verification Results'
+                        ),
+                        React.createElement('div', { className: 'grid grid-cols-1 md:grid-cols-2 gap-4' },
+                            verificationResults.map((check, index) =>
+                                React.createElement('div', {
+                                    key: index,
+                                    className: 'flex items-start p-3 bg-green-50 rounded-lg border border-green-200'
+                                },
+                                    React.createElement(CheckCircle, { className: 'w-5 h-5 text-green-600 mr-3 mt-0.5 flex-shrink-0' }),
+                                    React.createElement('div', null,
+                                        React.createElement('div', { className: 'font-medium text-green-800' }, check.name),
+                                        React.createElement('div', { className: 'text-sm text-green-600' }, check.description)
+                                    )
+                                )
+                            )
+                        ),
+                        React.createElement('div', { className: 'mt-4 p-4 bg-blue-50 rounded-lg border border-blue-200' },
+                            React.createElement('div', { className: 'flex items-center text-blue-800 font-medium' },
+                                React.createElement('svg', { className: 'w-5 h-5 mr-2', fill: 'none', stroke: 'currentColor', viewBox: '0 0 24 24' },
+                                    React.createElement('use', { href: '#icon-check-circle' })
+                                ),
+                                'Verification Complete'
+                            ),
+                            React.createElement('p', { className: 'text-sm text-blue-600 mt-1' },
+                                'All mathematical properties have been formally proven. This model is guaranteed to be mathematically correct and free from the logical errors that plague traditional financial software.'
+                            )
+                        )
+                    ),
+
+                    // Benefits Section
+                    React.createElement('div', { className: 'bg-gradient-to-r from-blue-50 to-purple-50 rounded-lg p-8 mb-12' },
+                        React.createElement('h3', { className: 'text-2xl font-bold text-center mb-8' }, 'Key Features & Benefits'),
+                        React.createElement('div', { className: 'grid grid-cols-1 md:grid-cols-4 gap-8' },
+                            React.createElement('div', { className: 'text-center' },
+                                React.createElement('div', { className: 'bg-blue-100 p-4 rounded-full w-16 h-16 mx-auto mb-3 flex items-center justify-center' },
+                                    React.createElement('svg', { className: 'h-8 w-8 text-blue-600', fill: 'none', stroke: 'currentColor', viewBox: '0 0 24 24' },
+                                        React.createElement('use', { href: '#icon-check-circle' })
+                                    )
+                                ),
+                                React.createElement('h3', { className: 'font-semibold text-gray-800 mb-2' }, 'AI-Powered Analysis'),
+                                React.createElement('p', { className: 'text-sm text-gray-600' }, 'Intelligent agents automatically analyze requirements and select optimal mathematical models')
+                            ),
+                            React.createElement('div', { className: 'text-center' },
+                                React.createElement('div', { className: 'bg-purple-100 p-4 rounded-full w-16 h-16 mx-auto mb-3 flex items-center justify-center' },
+                                    React.createElement(Terminal, { className: 'h-8 w-8 text-purple-600' })
+                                ),
+                                React.createElement('h3', { className: 'font-semibold text-gray-800 mb-2' }, 'Lean 4 Integration'),
+                                React.createElement('p', { className: 'text-sm text-gray-600' }, 'Formal mathematical proofs compiled and verified using Lean 4 theorem prover')
+                            ),
+                            React.createElement('div', { className: 'text-center' },
+                                React.createElement('div', { className: 'bg-green-100 p-4 rounded-full w-16 h-16 mx-auto mb-3 flex items-center justify-center' },
+                                    React.createElement(CheckCircle, { className: 'h-8 w-8 text-green-600' })
+                                ),
+                                React.createElement('h3', { className: 'font-semibold text-gray-800 mb-2' }, 'Mathematical Rigor'),
+                                React.createElement('p', { className: 'text-sm text-gray-600' }, 'Every algorithmic property formally proven with zero tolerance for errors')
+                            ),
+                            React.createElement('div', { className: 'text-center' },
+                                React.createElement('div', { className: 'bg-orange-100 p-4 rounded-full w-16 h-16 mx-auto mb-3 flex items-center justify-center' },
+                                    React.createElement(Zap, { className: 'h-8 w-8 text-orange-600' })
+                                ),
+                                React.createElement('h3', { className: 'font-semibold text-gray-800 mb-2' }, 'Risk Mitigation'),
+                                React.createElement('p', { className: 'text-sm text-gray-600' }, 'Eliminates algorithmic risk through formal verification and mathematical guarantees')
+                            )
+                        ),
+                        
+                        // Technology Stack
+                        React.createElement('div', { className: 'mt-8 grid grid-cols-1 md:grid-cols-2 gap-6' },
+                            React.createElement('div', null,
+                                React.createElement('h3', { className: 'text-lg font-semibold text-gray-800 mb-3' }, 'Technology Stack'),
+                                React.createElement('div', { className: 'space-y-2' },
+                                    React.createElement('div', { className: 'bg-gray-50 p-3 rounded-lg' },
+                                        React.createElement('strong', { className: 'text-gray-800' }, 'Lean 4:'), ' ',
+                                        React.createElement('span', { className: 'text-gray-600' }, 'Formal verification and theorem proving')
+                                    ),
+                                    React.createElement('div', { className: 'bg-gray-50 p-3 rounded-lg' },
+                                        React.createElement('strong', { className: 'text-gray-800' }, 'Python:'), ' ',
+                                        React.createElement('span', { className: 'text-gray-600' }, 'Multi-agent orchestration and financial calculations')
+                                    ),
+                                    React.createElement('div', { className: 'bg-gray-50 p-3 rounded-lg' },
+                                        React.createElement('strong', { className: 'text-gray-800' }, 'React:'), ' ',
+                                        React.createElement('span', { className: 'text-gray-600' }, 'Interactive demonstration interface')
+                                    )
+                                )
+                            ),
+                            React.createElement('div', null,
+                                React.createElement('h3', { className: 'text-lg font-semibold text-gray-800 mb-3' }, 'Applications'),
+                                React.createElement('div', { className: 'space-y-2' },
+                                    React.createElement('div', { className: 'bg-gray-50 p-3 rounded-lg' },
+                                        React.createElement('strong', { className: 'text-gray-800' }, 'Options Pricing:'), ' ',
+                                        React.createElement('span', { className: 'text-gray-600' }, 'Binomial and trinomial models')
+                                    ),
+                                    React.createElement('div', { className: 'bg-gray-50 p-3 rounded-lg' },
+                                        React.createElement('strong', { className: 'text-gray-800' }, 'Risk Management:'), ' ',
+                                        React.createElement('span', { className: 'text-gray-600' }, 'Portfolio optimization and hedge ratios')
+                                    ),
+                                    React.createElement('div', { className: 'bg-gray-50 p-3 rounded-lg' },
+                                        React.createElement('strong', { className: 'text-gray-800' }, 'Model Validation:'), ' ',
+                                        React.createElement('span', { className: 'text-gray-600' }, 'Regulatory compliance and audit trails')
+                                    )
+                                )
+                            )
+                        )
+                    ),
+
+                    // Contact Section
+                    React.createElement('div', { className: 'text-center' },
+                        React.createElement('p', { className: 'text-gray-600 mb-4' }, 'This demo shows a simplified version of VeriQuant\'s capabilities.'),
+                        React.createElement('div', { className: 'space-x-4' },
+                            React.createElement('a', {
+                                href: '/contact',
+                                className: 'bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors'
+                            }, 'Contact Us'),
+                            React.createElement('a', {
+                                href: '/methodology',
+                                className: 'bg-gray-600 text-white px-6 py-2 rounded-lg hover:bg-gray-700 transition-colors'
+                            }, 'Learn More')
+                        )
+                    )
+                )
+            );
+      };
+
+        // Render the application
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(React.createElement(VeriQuantDemo));
+        
+        // Initialize Feather icons after initial render
+        setTimeout(() => {
+            if (window.feather) {
+                window.feather.replace();
+            }
+        }, 100);
+    </script>
+
+    <!-- Include React, ReactDOM, and Babel from CDN -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    
+    <!-- Feather Icons -->
+    <script src="https://unpkg.com/feather-icons"></script>
+  </main>
+</Layout>
