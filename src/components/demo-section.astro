@@ -60,22 +60,15 @@ import { Icon } from "astro-icon/components";
 
       <div class="relative">
         <div class="aspect-video bg-black rounded-lg overflow-hidden shadow-2xl">
-          <!-- Placeholder for video - in production this would be an actual video -->
-          <div class="w-full h-full bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center">
-            <div class="text-center text-white">
-              <Icon class="w-24 h-24 mx-auto mb-4 text-blue-400" name="bx:bx-play-circle" />
-              <h4 class="text-xl font-bold mb-2">VeriQuant Demo Video</h4>
-              <p class="text-gray-300">Black-Scholes Model Verification</p>
-              <p class="text-sm text-gray-400 mt-2">Duration: 4:32</p>
-            </div>
-          </div>
-        </div>
-        
-        <!-- Video overlay with play button -->
-        <div class="absolute inset-0 bg-blue-600 bg-opacity-20 rounded-lg flex items-center justify-center cursor-pointer hover:bg-opacity-30 transition-all">
-          <div class="w-20 h-20 bg-white bg-opacity-90 rounded-full flex items-center justify-center hover:bg-opacity-100 transition-all">
-            <Icon class="w-10 h-10 text-blue-600 ml-1" name="bx:bx-play" />
-          </div>
+          <!-- YouTube Video Embed -->
+          <iframe 
+            class="w-full h-full"
+            src="https://www.youtube.com/embed/WSgdXGLhSSw?rel=0&modestbranding=1&showinfo=0"
+            title="VeriQuant Demo - Provably Correct Financial Modeling"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen>
+          </iframe>
         </div>
       </div>
     </div>
