@@ -1,0 +1,105 @@
+---
+import { Icon } from "astro-icon/components";
+---
+
+<div class="bg-gradient-to-br from-slate-50 to-blue-50 p-8 lg:p-12 rounded-xl">
+  <div class="max-w-4xl mx-auto">
+    <h3 class="text-3xl font-bold text-center mb-8 text-gray-800">
+      Understanding Verification Scope & Limits
+    </h3>
+    <p class="text-center text-gray-600 mb-12 max-w-2xl mx-auto">
+      Our approach to formal verification is grounded in mathematical rigor and theoretical understanding. 
+      Here's what VeriQuant can and cannot prove.
+    </p>
+    
+    <div class="grid md:grid-cols-2 gap-8">
+      <!-- What We Can Prove -->
+      <div class="bg-white rounded-lg p-6 shadow-md border-l-4 border-green-500">
+        <div class="flex items-center mb-4">
+          <Icon class="w-6 h-6 text-green-600 mr-3" name="bx:bx-check-shield" />
+          <h4 class="text-xl font-semibold text-green-800">What We Can Prove</h4>
+        </div>
+        <ul class="space-y-3 text-gray-700">
+          <li class="flex items-start">
+            <Icon class="w-4 h-4 text-green-500 mr-2 mt-1 flex-shrink-0" name="bx:bx-check" />
+            <span><strong>Mathematical Consistency:</strong> Models satisfy their formal specifications</span>
+          </li>
+          <li class="flex items-start">
+            <Icon class="w-4 h-4 text-green-500 mr-2 mt-1 flex-shrink-0" name="bx:bx-check" />
+            <span><strong>Arbitrage-Free Conditions:</strong> No riskless profit opportunities in pricing models</span>
+          </li>
+          <li class="flex items-start">
+            <Icon class="w-4 h-4 text-green-500 mr-2 mt-1 flex-shrink-0" name="bx:bx-check" />
+            <span><strong>Boundary Behaviors:</strong> Correct model behavior at expiration, extreme values</span>
+          </li>
+          <li class="flex items-start">
+            <Icon class="w-4 h-4 text-green-500 mr-2 mt-1 flex-shrink-0" name="bx:bx-check" />
+            <span><strong>Convergence Properties:</strong> Discrete models converge to continuous limits</span>
+          </li>
+          <li class="flex items-start">
+            <Icon class="w-4 h-4 text-green-500 mr-2 mt-1 flex-shrink-0" name="bx:bx-check" />
+            <span><strong>Compliance Constraints:</strong> Models meet specified regulatory requirements</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Fundamental Limitations -->
+      <div class="bg-white rounded-lg p-6 shadow-md border-l-4 border-amber-500">
+        <div class="flex items-center mb-4">
+          <Icon class="w-6 h-6 text-amber-600 mr-3" name="bx:bx-info-circle" />
+          <h4 class="text-xl font-semibold text-amber-800">Fundamental Limitations</h4>
+        </div>
+        <ul class="space-y-3 text-gray-700">
+          <li class="flex items-start">
+            <Icon class="w-4 h-4 text-amber-500 mr-2 mt-1 flex-shrink-0" name="bx:bx-x" />
+            <span><strong>Market Predictions:</strong> Future price movements remain unpredictable</span>
+          </li>
+          <li class="flex items-start">
+            <Icon class="w-4 h-4 text-amber-500 mr-2 mt-1 flex-shrink-0" name="bx:bx-x" />
+            <span><strong>Optimal Parameters:</strong> Best model calibration requires empirical validation</span>
+          </li>
+          <li class="flex items-start">
+            <Icon class="w-4 h-4 text-amber-500 mr-2 mt-1 flex-shrink-0" name="bx:bx-x" />
+            <span><strong>Real-World Behavior:</strong> Market conditions beyond model assumptions</span>
+          </li>
+          <li class="flex items-start">
+            <Icon class="w-4 h-4 text-amber-500 mr-2 mt-1 flex-shrink-0" name="bx:bx-x" />
+            <span><strong>General Halting:</strong> Rice's theorem limits what programs can prove about themselves</span>
+          </li>
+          <li class="flex items-start">
+            <Icon class="w-4 h-4 text-amber-500 mr-2 mt-1 flex-shrink-0" name="bx:bx-x" />
+            <span><strong>Complete Systems:</strong> Gödel's incompleteness theorems apply to sufficiently complex formal systems</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Competitive Advantage -->
+    <div class="mt-8 bg-gradient-to-r from-blue-100 to-purple-100 rounded-lg p-6">
+      <div class="flex items-center mb-4">
+        <Icon class="w-6 h-6 text-blue-600 mr-3" name="bx:bx-trophy" />
+        <h4 class="text-xl font-semibold text-blue-800">Our Competitive Advantage</h4>
+      </div>
+      <p class="text-gray-700 leading-relaxed">
+        Understanding these theoretical boundaries is precisely what sets VeriQuant apart. While other solutions 
+        make overconfident claims, we focus on what can actually be proven mathematically. This rigorous approach 
+        builds trust with sophisticated users and positions us as the technically credible solution in academic 
+        and enterprise environments where mathematical precision matters.
+      </p>
+    </div>
+
+    <!-- Technical Foundation -->
+    <div class="mt-6 bg-gray-100 rounded-lg p-6">
+      <div class="flex items-center mb-4">
+        <Icon class="w-6 h-6 text-gray-600 mr-3" name="bx:bx-brain" />
+        <h4 class="text-xl font-semibold text-gray-800">Theoretical Foundation</h4>
+      </div>
+      <p class="text-gray-700 leading-relaxed text-sm">
+        Our approach is grounded in computational complexity theory and formal methods research. 
+        We leverage insights from Rice's theorem (1953) about the undecidability of semantic properties 
+        and Gödel's incompleteness theorems (1931) about the limits of formal systems to build 
+        verification tools that are both powerful and honest about their scope.
+      </p>
+    </div>
+  </div>
+</div>
